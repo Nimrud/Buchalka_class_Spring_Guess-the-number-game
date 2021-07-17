@@ -1,4 +1,4 @@
-package test;
+package core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,5 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         log.info("Guess the Number Game");
+        NumberGeneratorImpl generator = new NumberGeneratorImpl();
+        System.out.println(generator.next());
     }
 }
