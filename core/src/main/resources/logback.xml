@@ -5,7 +5,12 @@
         </encoder>
     </appender>
 
-    <logger name="org.example" level="DEBUG"/>
+    <logger name="example" level="DEBUG"/>
+    <!--
+    Aby wyświetlić bardziej szczegółowe informacje, jakie procesy są uruchamiane, używamy poziomu "TRACE"
+
+    <logger name="org.springframework" level="TRACE"/>
+    -->
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
