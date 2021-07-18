@@ -4,15 +4,25 @@ Projekt kilkumodułowy:
     'pom' to "pojemnik" submodułów
 2) kasujemy defaultowy folder src
 3) P-klik na nazwie projektu -> New -> Module
-4) Dodajemy Logbacka w core/src/resources, czyli plik logback.xml
+4) Dodajemy Logbacka w example/src/resources, czyli plik logback.xml
     (jeśli przy tworzeniu obiektu loggera IDEA nie proponuje importu klasy Logger z pakietu org.slf4j.Logger, to Maven -> reload all)
         private static final Logger log = LoggerFactory.getLogger([xxx].class);
 5) W pliku pom.xml (głównym, nie w nowym module!) definiujemy dependencies
     Robimy to w tagu <dependencyManagement> - wtedy submoduły je dziedziczą
 6) Kolejna dependency: Spring Context (mvnrepository.com)
-7) Przenosimy się do pliku pom.xml w module 'core' i dodajemy dependencies, te same co w pomie głównym
+7) Przenosimy się do pliku pom.xml w module 'example' i dodajemy dependencies, te same co w pomie głównym
     wpisujemy artifactId (nazwa musi być ta sama, co w głównym pomie) i groupId
     wersja się sama zaciągnie z poma głównego
     (jeśli nie działa, to Maven -> root -> Execute Maven goal -> mvn clean install)
     Jeśli zrobimy to dobrze, to po lewej stronie, przy numerze wiersza, pojawi się ikonka,
         której kliknięcie przeniesie nas do odpowiedniej dependency w pomie głównym
+8) Dodajemy Spring Container, aby stworzył nam beana,
+    i go konfigurujemy - tutaj nie za pomocą adnotacji, ale pliku XML:
+    w pakiecie resources tworzymy plik beans.xml
+    (podkładka: https://docs.spring.io/spring-framework/docs/current/reference/html/example.html#beans)
+    dodajemy tam beana (podając klasę oraz ID)
+9) tworzymy instancję Containera:
+    w klasie Main (lub innej) dodajemy pole (CONFIG_LOCATION) z lokalizacją beana
+    tworzymy kontekst, a następnie wyciągamy z niego beana
+    następnie wywołujemy na powyższym odpowiednią metodę
+    po wszystkim zamykamy kontener (kontekst)
