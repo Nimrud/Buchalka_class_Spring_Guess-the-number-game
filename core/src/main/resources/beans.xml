@@ -6,7 +6,11 @@
 
     <bean id="numberGenerator" class="example.NumberGeneratorImpl"/>
     <bean id="game" class="example.GameImpl">
-        <constructor-arg ref="numberGenerator"/>
+        <property name="numberGenerator" ref="numberGenerator"/>
+        <!--
+        name -> nazwa pola w klasie GameImpl
+        ref -> id beana (powyżej)
+        -->
     </bean>
 
 </beans>
