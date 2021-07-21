@@ -32,3 +32,14 @@ Projekt kilkumodułowy:
     dodajemy w tej klasie konstruktor oraz zmieniamy implementację beana
     -> dodajemy <constructor-arg ref="">, aby wskazać ID, które będzie wstrzyknięte przez kontener
     ref z beana game musi być taki sam jak bean numberGenerator
+12) istnieje inny sposób na inicjalizację pola numberGenerator: setter-based dependency injection
+    -> kasujemy konstruktor z klasy GameImpl
+    -> tworzymy settera dla pola numberGenerator
+    -> w bean.xml zmieniamy beana 'game':
+        => usuwamy constructor-arg
+        => dodajemy property (name musi być takie samo jak nazwa pola w klase GameImpl,
+            a ref - takie samo jak nazwa odpowiedniego beana w beans.xml)
+13) jeśli stoimy przed wyborem, czy używać setter dependency injection, czy raczej
+    constructor dependency injection (DI), Buchalka zaleca constructor DI dla
+    dependencies obligatoryjnych, a setter DI dla opcjonalnych
+    zespół Springa zaleca stosowanie constructor dependency injection

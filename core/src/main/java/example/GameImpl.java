@@ -20,11 +20,15 @@ public class GameImpl implements Game{
 
     // == constructors ==
     // (nie potrzebujemy inicjalizować innych pól, bo to jest robione w metodzie reset() )
-    public GameImpl(NumberGenerator numberGenerator) {
+//    public GameImpl(NumberGenerator numberGenerator) {
+//        this.numberGenerator = numberGenerator;
+//    }
+
+    // == public methods ==
+    public void setNumberGenerator(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
-    // == public methods ==
     @Override
     public void reset() {
         smallest = 0;
