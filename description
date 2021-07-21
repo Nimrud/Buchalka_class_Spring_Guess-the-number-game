@@ -26,3 +26,9 @@ Projekt kilkumodułowy:
     tworzymy kontekst, a następnie wyciągamy z niego beana
     następnie wywołujemy na powyższym odpowiednią metodę
     po wszystkim zamykamy kontener (kontekst)
+10) implementujemy logikę gry (interfejs Game i klasa GameImpl)
+    dodajemy odpowiedni kod w klasie Main
+11) poprawiamy błąd w klasie GameImpl (brak inicjalizacji pola numberGenerator)
+    dodajemy w tej klasie konstruktor oraz zmieniamy implementację beana
+    -> dodajemy <constructor-arg ref="">, aby wskazać ID, które będzie wstrzyknięte przez kontener
+    ref z beana game musi być taki sam jak bean numberGenerator
