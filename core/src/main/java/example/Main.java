@@ -34,9 +34,6 @@ public class Main {
         // pobieramy beana gry z kontekstu (kontenera)
         Game game = context.getBean("game", Game.class);
 
-        // wywołujemy metodę reset(), żeby mieć wszystko "wyzerowane"
-        game.reset();
-
         // zamykamy kontener:
         context.close();
     }

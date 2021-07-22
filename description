@@ -43,3 +43,16 @@ Projekt kilkumodułowy:
     constructor dependency injection (DI), Buchalka zaleca constructor DI dla
     dependencies obligatoryjnych, a setter DI dla opcjonalnych
     zespół Springa zaleca stosowanie constructor dependency injection
+14) Bean Lifecycle Callbacks
+    zazwyczaj do zarządzania cyklem życia beanów używamy metod nazywanych
+    init()/initialize() - dla inicjalizacji
+    destroy()/dispose() - dla niszczenia/zamykania
+    Można też skonfigurować Spring Containera do odszukania odpowiednich metod
+        (adnotacje @PostConstruct i @PreDestroy)
+    -> z klasy Main usuwamy game.reset()
+    -> w beans.xml dodajemy nowego beana:
+        <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    -> w głównym pomie dodajemy dependency (Annotation API), a w pomie modułu: to samo, ale bez numeru wersji
+    -> w klasie GameImpl nad metodą reset() dodajemy adnotację @PostConstruct
+    -> jeśli @PostConstruct świeci się na czerwono: klik -> add Maven Dependency
+        -> search for artifact -> wpisać 'javax.annotation' -> add
