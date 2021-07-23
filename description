@@ -56,3 +56,4 @@ Projekt kilkumodułowy:
     -> w klasie GameImpl nad metodą reset() dodajemy adnotację @PostConstruct
     -> jeśli @PostConstruct świeci się na czerwono: klik -> add Maven Dependency
         -> search for artifact -> wpisać 'javax.annotation' -> add
+       alternatywnie: Maven -> mvn clean install
