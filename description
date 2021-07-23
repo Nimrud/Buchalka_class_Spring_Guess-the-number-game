@@ -57,3 +57,15 @@ Projekt kilkumodułowy:
     -> jeśli @PostConstruct świeci się na czerwono: klik -> add Maven Dependency
         -> search for artifact -> wpisać 'javax.annotation' -> add
        alternatywnie: Maven -> mvn clean install
+15) @Autowired
+    -> w beans.xml dodajemy <context:annotation-config>
+        (automatycznie doda się tam 'xmlns:context' oraz 2 adresy www w 'xsi:schemaLocation')
+    -> usuwamy beana CommonAnnotationBeanPostProcessor (dodanego w pkt 14)
+        od teraz używany będzie autowiring
+    -> z beana 'game' usuwamy <property>
+    -> z GameImpl usuwamy setter do pola numberGenerator
+    -> nad polem numberGenerator podajemy @Autowired
+    Dobrą praktyką jest używanie @Autowired dla konstruktora (constructor injection):
+        pozwala to na wstrzykiwanie elementów aplikacji jako niezmiennych obiektów
+        oraz pozwala upewnić się, że wymagane dependencies nie są nullami
+
