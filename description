@@ -85,5 +85,17 @@ Projekt kilkumodułowy:
         public Game game() {
         return new GameImpl();
         }
+19) CHALLENGE 1:
+    1) create an interface MessageGenerator with 2 methods
+    2) create a class MessageGeneratorImpl and implement methods to return any String
+        (e.g. "calling method xxx")
+    3) in MessageGeneratorImpl:
+        - add a logger
+        - add a field of type Game and autowire it
+        - add a field guessCount(int) and initialize it to 10 for now (it will be changed later)
+        - add a @PostConstruct method and log value of game to confirm it was autowired (e.g. not null)
+    4) create a bean method (in AppConfig) that will create a MessageGenerator
+    5) in the main method get the MessageGenerator beam and call both methods
+    6) check the console output and confirm that both methods are called
 
 

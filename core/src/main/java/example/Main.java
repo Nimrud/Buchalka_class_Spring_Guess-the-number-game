@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
 
@@ -33,6 +32,12 @@ public class Main {
 
         // pobieramy beana gry z kontekstu (kontenera)
         Game game = context.getBean(Game.class);
+
+        // CHALLENGE 1:
+        MessageGenerator messageGenerator =
+                context.getBean(MessageGenerator.class);
+        log.info("getMainMessage = {}", messageGenerator.getMainMessage());
+        log.info("getResultMessage = {}", messageGenerator.getResultMessage());
 
         // zamykamy kontener:
         context.close();
