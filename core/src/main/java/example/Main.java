@@ -22,7 +22,7 @@ public class Main {
         // a sporo NumberGeneratorImpl implementuje interfejs NumberGenerator, to
         // kodujemy to do interface'u (dobra praktyka)
         NumberGenerator numberGenerator =
-                context.getBean("numberGenerator", NumberGenerator.class);
+                context.getBean(NumberGenerator.class);
 
         // wywołujemy metodę:
         int number = numberGenerator.next();
@@ -32,7 +32,7 @@ public class Main {
             // slf4j automatycznie zamieni {} na parametr podany po przecinku
 
         // pobieramy beana gry z kontekstu (kontenera)
-        Game game = context.getBean("game", Game.class);
+        Game game = context.getBean(Game.class);
 
         // zamykamy kontener:
         context.close();
