@@ -68,12 +68,22 @@ Projekt kilkumodułowy:
     Dobrą praktyką jest używanie @Autowired dla konstruktora (constructor injection):
         pozwala to na wstrzykiwanie elementów aplikacji jako niezmiennych obiektów
         oraz pozwala upewnić się, że wymagane dependencies nie są nullami
-16) Zmiana na projekt obsługiwany adnotacjami
+16) Zmiana na projekt obsługiwany adnotacjami [Git branch: m05_components]
     -> beans.xml: zamiana <context:annotation-config> na <context:component-scan base-package="[pakiet]]"/>
     -> usuwamy wszystkie beany
     -> dodajemy @Component do implementacji interfejsów (ale nie do samych interfejsów,
         bo one nie powinny być powiązane ze swoimi implementacjami)
     -> w klasie Main usuwamy nazwy beanów w context.getBean() - Spring nadaje nazwy automatycznie
-
+17) Annotation Configuration [Git branch: m06_annotation_configuration]
+    -> usuwamy plik beans.xml
+    -> w pakiecie tworzymy klasę AppConfig
+    -> w klasie Main zmieniamy sposób tworzenia kontekstu (new AnnotationConfigApplicationContext)
+18) Jeśli potrzebujemy jakiejś dodatkowej konfiguracji naszego beana (np. klasy GameImpl), to:
+    -> usuwamy z klasy adnotację @Component
+    -> dodajemy w klasie AppConfig odpowiedni kod:
+        @Bean
+        public Game game() {
+        return new GameImpl();
+        }
 
 
