@@ -104,7 +104,7 @@ public class GameImpl implements Game{
 
     @Override
     public boolean isGameLost() {
-        return !isGameWon() && remainingGuesses >= 0;
+        return !isGameWon() && remainingGuesses <= 0;
     }
 
 
