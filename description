@@ -97,5 +97,13 @@ Projekt kilkumodułowy:
     4) create a bean method (in AppConfig) that will create a MessageGenerator
     5) in the main method get the MessageGenerator beam and call both methods
     6) check the console output and confirm that both methods are called
+20) CHALLENGE 2:
+    1) create an new Maven module in the project with the name 'console'
+    2) add the core project as a dependency
+    3) moce the Main class to the console subproject
+    4) run the Mian class from the console subproject and check that i't working the same
+    Tip: for the core project dependency artifactId check the pom.xml in the core project
+
+
 
 
