@@ -100,8 +100,8 @@ Projekt kilkumodułowy:
 20) CHALLENGE 2:
     1) create an new Maven module in the project with the name 'console'
     2) add the core project as a dependency
-    3) moce the Main class to the console subproject
-    4) run the Mian class from the console subproject and check that i't working the same
+    3) move the Main class to the console subproject
+    4) run the Main class from the console subproject and check that it's working the same
     Tip: for the core project dependency artifactId check the pom.xml in the core project
 
 
