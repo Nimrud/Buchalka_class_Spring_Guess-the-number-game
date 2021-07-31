@@ -1,6 +1,6 @@
 package example.console;
 
-import example.AppConfig;
+import example.config.AppConfig;
 import example.Game;
 import example.MessageGenerator;
 import example.NumberGenerator;
