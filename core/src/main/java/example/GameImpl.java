@@ -17,7 +17,8 @@ public class GameImpl implements Game{
     // == fields ==
     @Autowired
     private NumberGenerator numberGenerator;
-    private int guessCount = 10;  // ile razy można zgadywać
+    @Autowired
+    private int guessCount;       // ile razy można zgadywać
     private int number;           // wartość losowo wygenerowanej przez apkę liczby
     private int guess;            // "strzał" gracza
     private int smallest;         // smallest, biggest - zakres liczb, pomiędzy którymi jest wygenerowana liczba
@@ -73,6 +74,11 @@ public class GameImpl implements Game{
     @Override
     public int getRemainingGuesses() {
         return remainingGuesses;
+    }
+
+    @Override
+    public int getGuessCount() {
+        return guessCount;
     }
 
     @Override
