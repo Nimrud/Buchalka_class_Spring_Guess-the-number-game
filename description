@@ -103,7 +103,15 @@ Projekt kilkumodułowy:
     3) move the Main class to the console subproject
     4) run the Main class from the console subproject and check that it's working the same
     Tip: for the core project dependency artifactId check the pom.xml in the core project
-
-
-
-
+21) Custom annotation - gdy używamy bean methods, to ich nazwa powinna być taka sama jak nazwa pola z @Autowired,
+    CHYBA ŻE użyjemy qualifiers
+    qualifier - adnotacja zastosowana do beana (wtedy container wie, co powinno być powiązane,
+        niezależnie od nazwy beana lub pola)
+    1) tworzymy custom qualifiera (New -> Java Class -> [nazwa] + wybieramy typ Annotation)
+    2) konfigurujemy:
+        -> @Target({..., ...})  => tu zaznaczamy, do czego nasza adnotacja będzie miała zastosowanie
+            (np. do pola, do metody itp.)
+        -> @Retention(RetentionPolicy.RUNTIME)  => jak długo nasze adnotacje będą trwać
+        -> @Qualifier
+    3) aby użyć custom qualifiera, musimy zrobić odpowiednią adnotację @[nazwa] przy bean method
+        w klasie GameConfig oraz pola w klasach, które używają tych metod
