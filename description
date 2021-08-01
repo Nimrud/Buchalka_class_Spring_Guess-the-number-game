@@ -115,3 +115,11 @@ Projekt kilkumodułowy:
         -> @Qualifier
     3) aby użyć custom qualifiera, musimy zrobić odpowiednią adnotację @[nazwa] przy bean method
         w klasie GameConfig oraz pola w klasach, które używają tych metod
+22) Wgrywanie danych konfiguracyjnych z pliku
+    1) tworzymy plik w folderze 'resources' i wprowadzamy tam dane (w formule 'klucz - wartość')
+    2) w klasie GameConfig dodajemy adnotację @PropertySource wraz z adresem powyższego pliku
+        (za atrybutem 'classpath:' lub 'file:')
+    3) dodajemy adnotację @Value przy odpowiednich polach, wraz z parametrem
+        ${nazwa.klucza}
+    4) można dodać też wartość domyślną (ona się pojawi, gdy kontekst nie odnajdzie pliku w resources
+        @Value("${nazwa.klucza:wartość.domyślna}")
