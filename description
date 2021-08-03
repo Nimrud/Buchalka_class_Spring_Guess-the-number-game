@@ -123,3 +123,13 @@ Projekt kilkumodułowy:
         ${nazwa.klucza}
     4) można dodać też wartość domyślną (ona się pojawi, gdy kontekst nie odnajdzie pliku w resources
         @Value("${nazwa.klucza:wartość.domyślna}")
+23) CHALLENGE 3
+    1) create a custom qualifier @MinNumber
+    2) use game.properties to specify the value for minNumber
+    3) create a bean method to create bean minNumber (tip: GameConfig)
+    4) inject/autowire minNumber to NumberGeneratorImpl
+    5) add a getter minNumber to NumberGenerator
+    6) fix NumberGeneratorImpl to generate values between min and max
+        (currently it generates between 0 and max)
+    7) fix GameImpl to use minNumber for smallest and guess instead of using 0 as a starting value
+
