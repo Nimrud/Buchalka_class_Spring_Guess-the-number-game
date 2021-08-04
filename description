@@ -132,4 +132,11 @@ Projekt kilkumodułowy:
     6) fix NumberGeneratorImpl to generate values between min and max
         (currently it generates between 0 and max)
     7) fix GameImpl to use minNumber for smallest and guess instead of using 0 as a starting value
+24) CHALLENGE 4
+    1) use constructor injection/autowiring in classes GameImpl, MessageGeneratorImpl and ConsoleNumberGuess
+    2) AppConfig will be an empty class (no methods) - we can remove it and use
+        GameConfig in Main class when creating the container
+    3) make sure the project is working the same as it was prior to making any changes
+    4) be careful about annotations that you have to add to GameConfig after removing the AppConfig class
+
 

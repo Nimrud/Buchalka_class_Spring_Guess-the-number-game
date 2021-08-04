@@ -1,6 +1,6 @@
 package example.console;
 
-import example.config.AppConfig;
+import example.config.GameConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -14,7 +14,7 @@ public class Main {
         log.info("Guess the Number Game");
 
         ConfigurableApplicationContext context =
-                new AnnotationConfigApplicationContext(AppConfig.class);
+                new AnnotationConfigApplicationContext(GameConfig.class);
 
         context.close();
     }

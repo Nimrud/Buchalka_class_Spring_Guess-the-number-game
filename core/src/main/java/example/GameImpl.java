@@ -15,19 +15,21 @@ public class GameImpl implements Game{
     private static final Logger log = LoggerFactory.getLogger(GameImpl.class);
 
     // == fields ==
-    @Autowired
-    private NumberGenerator numberGenerator;
-
-    @Autowired
-    @GuessCount
-    private int guessCount;       // ile razy można zgadywać
-
+    private final NumberGenerator numberGenerator;
+    private final int guessCount;       // ile razy można zgadywać
     private int number;           // wartość losowo wygenerowanej przez apkę liczby
     private int guess;            // "strzał" gracza
     private int smallest;         // smallest, biggest - zakres liczb, pomiędzy którymi jest wygenerowana liczba
     private int biggest;
     private int remainingGuesses;
     private boolean validNumberRange = true;
+
+    // == constructors ==
+    @Autowired
+    public GameImpl(NumberGenerator numberGenerator, @GuessCount int guessCount) {
+        this.numberGenerator = numberGenerator;
+        this.guessCount = guessCount;
+    }
 
     // == init ==
     @PostConstruct
