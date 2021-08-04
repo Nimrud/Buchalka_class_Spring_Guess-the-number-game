@@ -10,14 +10,18 @@ public class NumberGeneratorImpl implements NumberGenerator{
 
     private final Random random = new Random();
 
-    @Autowired
-    @MaxNumber
-    private int maxNumber;
+    private final int maxNumber;
 
-    @Autowired
-    @MinNumber
-    private int minNumber;
+    private final int minNumber;
 
+    // constructors ==
+    @Autowired
+    public NumberGeneratorImpl(@MaxNumber int maxNumber, @MinNumber int minNumber) {
+        this.maxNumber = maxNumber;
+        this.minNumber = minNumber;
+    }
+
+    // == public methods ==
     @Override
     public int next() {
         return random.nextInt(maxNumber - minNumber) + minNumber;
