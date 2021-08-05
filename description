@@ -156,6 +156,12 @@ Projekt kilkumodułowy:
         a) do klasy Main dodajemy @Slf4j
         b) wyskakuje error ("A field with that name already exists") -> chodzi tu o pole Loggera
             -> kasujemy 'log' (teraz ta adnotacja będzie odpowiadała za stworzenie Loggera)
-
+    5) Jeśli np. jedno pole w danej klasie nie potrzebuje gettera/settera,
+        to możemy całą klasę oznaczyć @Getter/@Setter, a przy tym polu dać adnotację
+        @Getter(AccessLevel.NONE)
+26) CHALLENGE 5
+    go through the ConsoleNumberGuess, NumberGeneratorImpl and MessageGeneratorImpl classes
+      and see what code you can remove and replace via Lombok annotations
+    tip: you only need @Slf4j and @Getter annotations
 
 
