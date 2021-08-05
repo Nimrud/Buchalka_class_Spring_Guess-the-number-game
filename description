@@ -138,5 +138,24 @@ Projekt kilkumodułowy:
         GameConfig in Main class when creating the container
     3) make sure the project is working the same as it was prior to making any changes
     4) be careful about annotations that you have to add to GameConfig after removing the AppConfig class
+25) Lombok
+    1) File -> Settings -> Plugins -> search 'lombok' -> Search in repositories
+        -> Lombok Plugin -> Install -> Restart Intellij IDEA -> OK
+    2) File -> Settings -> Build, Execution, Deployment -> Compiler -> Annotation Processors
+        -> Enable annotation processing + Obtain processors from classpath -> OK
+    3) dodanie Lombok dependency:
+        MVN Repository -> Project Lombok -> skopiować dependency do pom.xml (głównego)
+        -> dependency do pom.xml w module 'core' (bez numeru wersji)
+        UWAGA! Jeśli ściągamy bibliotekę w formie pliku .jar (nie jako kopię dependency z MVN Repo),
+            to tworzymy nowy katalog w projekcie (np. libs), wklejamy tam plik lombok-edge.jar
+            a w pliku pom.xml (w module 'core') dodajemy:
+            <scope>system</scope>
+            <systemPath>${basedir}/../libs/lombok-edge.jar</systemPath>
+    => restart Intellij IDEA
+    4) sprawdzamy, czy działa poprawnie:
+        a) do klasy Main dodajemy @Slf4j
+        b) wyskakuje error ("A field with that name already exists") -> chodzi tu o pole Loggera
+            -> kasujemy 'log' (teraz ta adnotacja będzie odpowiadała za stworzenie Loggera)
+
 
 
