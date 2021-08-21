@@ -175,10 +175,27 @@ Projekt kilkumodułowy:
                 <version>2.5.4</version>
                 <relativePath/>
             </parent>
-    2) modyfikujemy pliki pom.xml z modułów
+    2) modyfikujemy plik pom.xml w module 'core'
         -> usuwamy istniejące dependencies i dodajemy
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
             </dependency>
     3) zmieniamy nazwę pliku 'logback.xml' na 'logback-spring.xml'
+        modyfikujemy plik - usuwamy sekcje <appender> i <root> (będziemy wykorzystywać
+            domyślną konfigurację ze Spring Boota)
+        dodajemy:
+            <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    4) modyfikujemy plik pom.xml w module 'console'
+        -> w dependencies dodajemy Spring Boot Maven plugin (ponieważ w tym module mamy klasę Main)
+            ten plugin pakuje całą aplikację w plik JAR (razem z dependencies)
+    5) w module 'console' dodajemy plik 'application.properties' w folderze 'resources'
+    6) ostatni krok to zastosowanie (włączenie) Spring Boota w naszej klasie Main
+        -> dodanie adnotacji @SpringBootApplication do klasy
+        -> usunięcie tworzenia kontekstu, bo Spring Boot robi to automatycznie
+        -> używamy metody .run() z klasy SpringApplication:
+            SpringApplication.run(Main.class, args);
+   7) Maven -> clean install -> Spring nie może znaleźć klasy Game, bo znajduje się w innym pakiecie/module
+        -> rozwiązanie 1: zastosować adnotację @ComponentScan
+        -> rozwiązanie 2: przeniesienie klasy o 1 poziom wyżej (z 'example.console' do 'example')
+
