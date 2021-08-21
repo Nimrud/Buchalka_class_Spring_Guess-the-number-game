@@ -164,4 +164,21 @@ Projekt kilkumodułowy:
       and see what code you can remove and replace via Lombok annotations
     tip: you only need @Slf4j and @Getter annotations
 
-
+27) Konwersja projektu na wersję ze Spring Boot 2
+    1) dodajemy Spring Boot jako parenta istniejącego projektu (w pliku pom.xml)
+        -> w sekcji properties usuwamy wszystkie wpisy poza wersją Javy
+        -> usuwamy też całą sekcję <dependencyManagement>
+        -> dodajemy parenta:
+            <parent>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>2.5.4</version>
+                <relativePath/>
+            </parent>
+    2) modyfikujemy pliki pom.xml z modułów
+        -> usuwamy istniejące dependencies i dodajemy
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+            </dependency>
+    3) zmieniamy nazwę pliku 'logback.xml' na 'logback-spring.xml'
