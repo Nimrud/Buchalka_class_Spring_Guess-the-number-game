@@ -198,4 +198,10 @@ Projekt kilkumodułowy:
    7) Maven -> clean install -> Spring nie może znaleźć klasy Game, bo znajduje się w innym pakiecie/module
         -> rozwiązanie 1: zastosować adnotację @ComponentScan
         -> rozwiązanie 2: przeniesienie klasy o 1 poziom wyżej (z 'example.console' do 'example')
+28) Thymeleaf
+    1) dodajemy dependency w pliku pom.xml (w module 'web') + mvn clean install
+    2) w folderze 'resources' tworzymy katalog 'templates'
+    3) w nim tworzymy pierwszy widok: new -> HTML 5 -> 'home'
+    4) w tym pliku modyfikujemy 2 wiersz na:
+        <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
