@@ -204,4 +204,14 @@ Projekt kilkumodułowy:
     3) w nim tworzymy pierwszy widok: new -> HTML 5 -> 'home'
     4) w tym pliku modyfikujemy 2 wiersz na:
         <html lang="en" xmlns:th="http://www.thymeleaf.org">
+        => zdefiniowaliśmy powyżej skrót 'th', do którego będziemy się odwoływać jako atrybut
+        => przykładowe atrybuty (dla linka):
+            <a th:href="play" th:text="Play the Game"/>
+            th:href="play"  -> adres (localhost:8080/play)
+            th:text="Play the Game"  -> to się wyświetli na stronie jako hiperłącze
+    5) tworzymy klasę do przechowywania zmiennych ViewNames (w kat. utils)
+    6) tworzymy klasę ViewConfig (kat. 'config') i rejestrujemy tam kontroler widoku
+        => ta klasa implementuje WebMvcConfigurer
+        => override metody: addViewControllers:
+            registry.addViewController("/").setViewName(ViewNames.HOME);
 
