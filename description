@@ -223,3 +223,23 @@ Projekt kilkumodułowy:
         </dependency>
     2) restart aplikacji: Build -> Build Project (albo Ctrl + F9)
         -> nie potrzeba zatrzymywać aplikacji, ani Mvn clan install
+30) CHALLENGE 6
+    1) create an interface named GameService with the following methods:
+        -> isGameOver: without any parameters and a return type of boolean
+        -> getMainMessage: without parameters and a return type of String
+        -> getResultMessage: without parameters and a return type of String
+        -> checkGuess: with parameter int guess, it should not return a value
+        -> reset without parameters, it should not return a value
+    2) create a class GameServiceImpl and annotate it with the @Service annotation
+    3) class GameServiceImpl needs to have 2 final fields - one of type Game
+        and the other of type MessageGenerator. Use constructor injection to autowire
+        the game and message generator fields
+    4) For the implement methods:
+        -> isGameOver needs to check if the game is over (won or lost)
+        -> getMainMessage and getResultMessage need to call appropriate methods
+            from messageGenerator
+        -> checkGuess should set the guess in the game instance and then call
+            the method check also on the game instance
+        -> reset should call the reset method on the game instance
+    5) to test it out, add an init method with the @PostConstruct annotation;
+        the method should log mainMessage and the number that we have to guess
