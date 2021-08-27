@@ -243,3 +243,19 @@ Projekt kilkumodułowy:
         -> reset should call the reset method on the game instance
     5) to test it out, add an init method with the @PostConstruct annotation;
         the method should log mainMessage and the number that we have to guess
+31) Widok (Thymeleaf template) 'game.html':
+    1) dla formularzy: tag <label> wiążemy z tagiem <input> za pomocą ID:
+        <label for="[xxx]">
+        <input id="[xxx]"/>
+    2) <input name="[zzz]"/> atrybut 'name' jest używany przez Springa jako RequestParameter
+    3) przycisk submit:
+        <input type="submit" value="Submit"/>
+    4) w kontrolerze obsługujemy wartość z pola <input>:
+        public String processMessage(@RequestParam int guess) {}
+        => nazwa parametru ('guess') musi się zgadzać z nazwą pola w pliku .html
+            <input name="guess"/>
+    5) w pliku .html formularz wiążemy z kontrolerem za pomocą atrybutu 'action':
+        <form action="play" method="post">
+        => 'play' oznacza URL przypisany do metody obsługującej (zarówno wyświetlanie, jak i obsługę):
+            @GetMapping("play")
+            @PostMapping("play")
