@@ -214,4 +214,12 @@ Projekt kilkumodułowy:
         => ta klasa implementuje WebMvcConfigurer
         => override metody: addViewControllers:
             registry.addViewController("/").setViewName(ViewNames.HOME);
-
+29) Spring Boot Developer Tools
+    1) w module 'web' modyfikujemy pom.xml - dodajemy dependency
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+    2) restart aplikacji: Build -> Build Project (albo Ctrl + F9)
+        -> nie potrzeba zatrzymywać aplikacji, ani Mvn clan install

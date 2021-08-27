@@ -2,7 +2,7 @@
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-    <logger name="example" level="DEBUG"/>
-    <logger name="org.springframework" level="DEBUG"/>
+    <logger name="example" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
 
 </configuration>
