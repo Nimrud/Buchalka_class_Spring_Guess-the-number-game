@@ -248,6 +248,7 @@ Projekt kilkumodułowy:
         <label for="[xxx]">
         <input id="[xxx]"/>
     2) <input name="[zzz]"/> atrybut 'name' jest używany przez Springa jako RequestParameter
+        w metodzie obsługującej formularz (@PostMapping)
     3) przycisk submit:
         <input type="submit" value="Submit"/>
     4) w kontrolerze obsługujemy wartość z pola <input>:
@@ -259,3 +260,27 @@ Projekt kilkumodułowy:
         => 'play' oznacza URL przypisany do metody obsługującej (zarówno wyświetlanie, jak i obsługę):
             @GetMapping("play")
             @PostMapping("play")
+    6) jeśli zamiast wyświetlenia widoku chcemy przekierować do jakiejś akcji,
+        to używamy 'return "redirect:/[xxx]"'
+        -> przekierowanie do metody oznaczonej @GetMapping("[xxx]")
+32) Thymeleaf pre-processing
+    1) składnia: ${__${message}__}
+    2) daje możliwość wykonania przed właściwym wykonaniem (np. żeby przetestować działanie)
+    3) dzięki temu, w plikach .html możemy używać zdefiniowanych stałych,
+        np. AttributeNames.MAIN_MESSAGE
+    4) przykład dla pola z ModelAttribute - zamiast:
+            <h3 th:text="${mainMessage}">Message</h3>
+        piszemy:
+            <h3 th:text="${__${T(example.util.AttributeNames).MAIN_MESSAGE}__}">Message</h3>\
+        => musimy podać pełną ścieżkę do zmiennej (razem z pakietem
+        => musimy tę ścieżkę opakować w T()
+            T()  --> używany, aby określić instancję klasy Java (czyli wywołać statyczne metody
+                lub pobrać wartość zmiennych statycznych)
+        => użycie: T(klasa).pole
+    5) przykład dla pola z mapowaniem do adresu URL (np. localhost:8080/play) - zamiast:
+            <form action="play" method="post">
+        piszemy:
+            <form th:action="@{__${T(example.util.GameMappings).PLAY}__}" method="post">
+        => oczywiście w formie T(klasa).zmienna
+    6) UWAGA!!! W nowszych wersjach Thymeleaf funkcjonalność odwoływania się do
+        klas statycznych ZOSTAŁA WYŁĄCZONA (-> bezpieczeństwo)
