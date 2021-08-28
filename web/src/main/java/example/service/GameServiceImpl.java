@@ -53,7 +53,7 @@ public class GameServiceImpl implements GameService{
     // == init ==
     @PostConstruct
     public void initialize() {
-        log.info("Challenge 6: main message is ={}", messageGenerator.getMainMessage());
+        log.info("Challenge 6: main message is = {}", messageGenerator.getMainMessage());
         log.info("Challenge 6: number = {}", game.getNumber());
     }
 }
