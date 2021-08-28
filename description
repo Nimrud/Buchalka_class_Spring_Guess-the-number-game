@@ -208,7 +208,10 @@ Projekt kilkumodułowy:
         => przykładowe atrybuty (dla linka):
             <a th:href="play" th:text="Play the Game"/>
             th:href="play"  -> adres (localhost:8080/play)
-            th:text="Play the Game"  -> to się wyświetli na stronie jako hiperłącze
+                (lub: th:href="@{play}")
+            th:text="PlayTheGame"  -> to się wyświetli na stronie jako hiperłącze
+                -> jeśli chcemy uniknąć camelCase'u w th:text, to wartość w nawiasie
+                obudowujemy w '' (th:text="'Play the Game'")
     5) tworzymy klasę do przechowywania zmiennych ViewNames (w kat. utils)
     6) tworzymy klasę ViewConfig (kat. 'config') i rejestrujemy tam kontroler widoku
         => ta klasa implementuje WebMvcConfigurer
@@ -260,7 +263,7 @@ Projekt kilkumodułowy:
         => 'play' oznacza URL przypisany do metody obsługującej (zarówno wyświetlanie, jak i obsługę):
             @GetMapping("play")
             @PostMapping("play")
-    6) jeśli zamiast wyświetlenia widoku chcemy przekierować do jakiejś akcji,
+    6) jeśli w kontrolerze zamiast wyświetlenia widoku chcemy przekierować do jakiejś akcji,
         to używamy 'return "redirect:/[xxx]"'
         -> przekierowanie do metody oznaczonej @GetMapping("[xxx]")
 32) Thymeleaf pre-processing
@@ -284,3 +287,22 @@ Projekt kilkumodułowy:
         => oczywiście w formie T(klasa).zmienna
     6) UWAGA!!! W nowszych wersjach Thymeleaf funkcjonalność odwoływania się do
         klas statycznych ZOSTAŁA WYŁĄCZONA (-> bezpieczeństwo)
+33) CHALLENGE 7
+    1) create a Thymeleaf template for game-over view (game-over.html)
+    2) in the .html fle add a centered div tag that contains:
+        -> game title in h1 tag
+        -> text "Game Over" in h2 tag
+        -> result message in h3 tag (model attribute)
+        -> a h3 tag with a tag (anchor) with text "Play Again"
+        -> clicking on Play Again link should call the controller restart method
+        -> a h3 tag with a tag (anchor) with text "Home"
+        -> clicking on the Home link should open the home page (home.html)
+        -> the footer tag - same as in play.html file
+    3) add the method 'restart' to GameController
+        -> method should call gameService .reset() method and redirect to 'play' view
+        -> it needs to be mapped to /restart
+    4) check the logic is working correctly:
+        -> after game is won or lost, game over view should be displayed
+        -> clicking on Home link should show the 'home' view
+        -> clicking on Play Again link should reset the game and show 'play' view
+    5) Tip: use constants
