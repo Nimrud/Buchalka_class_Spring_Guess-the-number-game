@@ -306,3 +306,12 @@ Projekt kilkumodułowy:
         -> clicking on Home link should show the 'home' view
         -> clicking on Play Again link should reset the game and show 'play' view
     5) Tip: use constants
+34) Thymeleaf templates
+    1) syntax: ~{templateName::fragmentName}
+    2) warto na te fragmenty wydzielić specjalny folder (w resources/templates)
+    3) fragmenty są zwykłymi plikami html (new -> HTML5), pamiętając o dodaniu
+        do tagu <html> Thymeleafa
+    4) przypisujemy nazwę do fragmentu korzystając z atrybutu 'th:fragment', np.:
+        <head th:fragment="headFragment">
+    5) dodajemy fragment do dowolnego pliku .html:
+        <head th:replace="~{fragments/head :: headFragment}">
