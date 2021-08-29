@@ -315,3 +315,6 @@ Projekt kilkumodułowy:
         <head th:fragment="headFragment">
     5) dodajemy fragment do dowolnego pliku .html:
         <head th:replace="~{fragments/head :: headFragment}">
+35) CHALLENGE 8
+    1) create a fragment for the footer tag in a file called footer.html
+    2) use it across all 3 templates
