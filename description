@@ -37,7 +37,7 @@ Projekt kilkumodułowy:
     -> tworzymy settera dla pola numberGenerator
     -> w bean.xml zmieniamy beana 'game':
         => usuwamy constructor-arg
-        => dodajemy property (name musi być takie samo jak nazwa pola w klase GameImpl,
+        => dodajemy property (name musi być takie samo jak nazwa pola w klasie GameImpl,
             a ref - takie samo jak nazwa odpowiedniego beana w beans.xml)
 13) jeśli stoimy przed wyborem, czy używać setter dependency injection, czy raczej
     constructor dependency injection (DI), Buchalka zaleca constructor DI dla
@@ -318,3 +318,29 @@ Projekt kilkumodułowy:
 35) CHALLENGE 8
     1) create a fragment for the footer tag in a file called footer.html
     2) use it across all 3 templates
+36) Thymeleaf decoupled template logic
+    -> pozwala przenieść część logiki poza plik .html do innego pliku
+        (z rozszerzeniem .th.xml, tworzymy go w tym samym folderze co .html)
+    -> nazwa pliku z logiką powinna być taka sama jak pliku obsługiwanego
+    -> dzięki takiemu rozwiązaniu szablony (widoki) są niezależne od Thymeleafa
+    -> ta opcja jest domyślnie wyłączona w Spring Boot
+    1) aktywujemy decoupling:
+        => w katalogu 'util' tworzymy klasę DecoupledLogicSetup, w którym tworzymy
+            pole rodzaju SpringResourceTemplateResolver
+        => inicjalizujemy templateResolvera (w metodzie .init(), za pomocą @PostConstruct)
+    2) tworzymy plik z logiką
+        => wszystko w nim powinno się znaleźć w bloku <thlogic></thlogic>
+        => tworzymy w nim tagi <attr>, które mają atrybuty 'sel' (od 'selector') oraz
+            atrybuty Thymeleaf (th:[xxx])
+        => tag <attr> będzie użyty do attribute injection (do szablonu .html)
+        => wiązanie <attr> z kodem .html - za pomocą selektora (tutaj: typu ID, czyli #):
+            - plik th.xml:
+                <attr sel="#head" th:replace=""/>
+            - plik .html:
+                <head id="head"/>
+        => UWAGA! Przy tworzeniu nazwy selektora używamy typu:
+            # - dla ID
+            . - dla klasy
+        => Przy wykorzystaniu selektora:
+            id=""
+            class=""
