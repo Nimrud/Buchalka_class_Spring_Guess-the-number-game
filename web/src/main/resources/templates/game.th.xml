@@ -3,4 +3,8 @@
         th:replace="~{fragments/head :: headFragment}"/>
     <attr sel="#footer"
           th:replace="~{fragments/footer :: footerFragment}"/>
+    <attr sel="#mainMessage"
+          th:text="${mainMessage}"/>
+    <attr sel="#resultMessage"
+          th:text="${resultMessage}"/>
 </thlogic>
