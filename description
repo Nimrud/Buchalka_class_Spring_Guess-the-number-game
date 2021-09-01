@@ -346,3 +346,40 @@ Projekt kilkumodułowy:
             class=""
 37) CHALLENGE 9
     1) create logic files for templates footer, head, game-over and home
+38) Spring internationalization
+    -> elementy tekstowe (takie jak np. wyświetlane informacje, UI) nie są tu zakodowane
+        w programie, ale przechowywane "na zewnątrz" i pozyskiwane dynamicznie
+    -> Spring Boot domyślnie szuka plików lokalizacyjnych w src/main/resources
+        (ale dla tej aplikacji w module 'core', a nie 'web', ponieważ klasa
+        MessageGenerator to jest)
+    -> plik z domyślną wersją językową nazywamy 'messages.properties', a inne
+        'messages_xx.properties' - gdzie 'xx' to kod kraju, zgodnie z
+        https://www.oracle.com/java/technologies/javase/jdk8-jre8-suported-locales.html
+    -> każda wiadomość ma klucz identyfikacyjny, a Thymeleaf pozwala na powiązanie
+        wiadomości za pomocą #{xxx}
+    1) tworzymy 2 pliki: messages_pl.properties i messages_en.properties
+    2) IDEA automatycznie łączy je w Resource Bundle
+        (jeśli się nie pojawia, to trzeba zainstalować Resource Bundle plugin)
+    3) otwieramy którykolwiek z nich
+    4) na dole pojawiają się 2 karty: Text oraz Resource Bundle (-> klikamy tu)
+    5) klikamy na +  => wprowadzamy nazwę klucza => wprowadzamy tekst
+    6) używamy klucza w pliku .th.xml (jako <attr>)
+    7) wiążemy powyższą zawartość z widokiem za pomocą #id
+
+    Resource Bundle messages:
+        game.title
+    game.th.xml:
+        <attr sel="#gameTitle" th:text="#{game.title}"/>
+    game.html:
+        <h1 id="gameTitle">Guess the Number Game</h1>
+
+    8) dodajemy 2 właściwości do pliku 'application.properties' (moduł 'web'):
+        spring.web.locale=pl                => domyślny język
+        spring.web.locale-resolver=fixed    => fixed, czyli Spring zawsze użyje domyślnego języka
+    9) UWAGA! Jeśli stworzymy plik z naszym językiem, to będzie on domyślnie wyświetlany
+        (tzn. Spring wyświetli apkę w języku domyślnym naszego komputera)
+    10) UWAGA! BUG w IntelliJ IDEA: nie podkłada napisów dodanych za pomocą edytora,
+        trzeba to zrobić ręcznie (a potem mvn clean install)
+    11) Jeśli nie działa wyświetlanie polskich znaków - zmieniamy ustawienia Intellij:
+        File -> Settings -> Editor -> File encodings -> sekcja Properties Files -> UTF-8
+        => wymaga to ponownego wprowadzenia polskich znaków do napisów w Intellij
