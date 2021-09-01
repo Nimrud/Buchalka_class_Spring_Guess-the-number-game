@@ -2,7 +2,11 @@
     <attr sel="#head"
         th:replace="~{fragments/head :: headFragment}"/>
     <attr sel="#gameTitle"
-          th:text="#{game.title.new}"/>
+          th:text="#{game.title}"/>
+    <attr sel="#enterGuess"
+          th:text="#{game.enter.guess}"/>
+    <attr sel="#submit"
+          th:value="#{game.submit}"/>
     <attr sel="#footer"
           th:replace="~{fragments/footer :: footerFragment}"/>
     <attr sel="#mainMessage"
