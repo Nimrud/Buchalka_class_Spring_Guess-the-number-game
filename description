@@ -383,3 +383,8 @@ Projekt kilkumodułowy:
     11) Jeśli nie działa wyświetlanie polskich znaków - zmieniamy ustawienia Intellij:
         File -> Settings -> Editor -> File encodings -> sekcja Properties Files -> UTF-8
         => wymaga to ponownego wprowadzenia polskich znaków do napisów w Intellij
+    12) jeśli chcemy podmienić tylko część napisu (np. zostawiamy nazwę firmy w oryginale),
+        to stosujemy tzw. literal substitution
+        składnia:   th:text="|#{footer.createdBy} Krzysztof Jaczewski|"
+        plik PL:    footer.createdBy=Twórca strony:
+        plik EN:    footer.createdBy=Created by:

@@ -1,4 +1,6 @@
 <thlogic>
     <attr sel="#footer"
           th:fragment="footerFragment"/>
+    <attr sel="#footerCredits"
+          th:text="#{footer.credits}"/>
 </thlogic>
