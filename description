@@ -388,3 +388,11 @@ Projekt kilkumodułowy:
         składnia:   th:text="|#{footer.createdBy} Krzysztof Jaczewski|"
         plik PL:    footer.createdBy=Twórca strony:
         plik EN:    footer.createdBy=Created by:
+39) CHALLENGE 10
+    1) internationalize the game-over.html and home.html files, and add translations
+        for those two templates
+    2) in game-over.html translate the Game Over text, and the other anchor text
+        for the Play Again link and the anchor text for the Home link
+    3) in home.html translate the Welcome text and the anchor text for the Play link
+    4) do not touch the messages from the MessageGenerator - we will deal with those later
+40)
