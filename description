@@ -395,4 +395,22 @@ Projekt kilkumodułowy:
         for the Play Again link and the anchor text for the Home link
     3) in home.html translate the Welcome text and the anchor text for the Play link
     4) do not touch the messages from the MessageGenerator - we will deal with those later
-40)
+40) Internacjonalizacja komunikatów klasy MessageGenerator
+    -> składają się one ze Stringów połączonych z getterami
+    -> trzeba tu wykorzystać 'złożone komunikaty' (compound messages), czyli takie,
+        które mogą zawierać w sobie kilka zmiennych
+    -> skorzystamy z interfejsu MessageSource, który wspiera dodawanie parametrów
+        do wiadomości oraz internacjonalizację (ten interfejs jest częścią Spring framework)
+    1) do klasy MessageGeneratorImpl dodajemy pole MessageSource (+ modyfikujemy konstruktor)
+    2) tworzymy metodę getMessage(), która pozwala na pozyskanie komunikatu ze źródła
+        (po kluczu) - źródłem jest tu plik 'messages.properties'
+
+        private String getMessage(String code, Object... args) {
+                return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
+            }
+        code => nasz klucz z pliku messages.properties oraz innych wersji językowych
+            (game.main.message=Number is between {0} and {1}.)
+        args =>  to, co podłożymy pod {0} oraz {1}
+    3) TIP: można sobie w klasie dodać stałą, którą jest klucz
+    4) zmieniamy metodę generującą komunikat - przykład:
+        return getMessage(MAIN_MESSAGE, game.getSmallest(), game.getBiggest());
