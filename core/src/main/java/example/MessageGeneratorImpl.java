@@ -2,6 +2,8 @@ package example;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -10,24 +12,34 @@ import javax.annotation.PostConstruct;
 @Component
 public class MessageGeneratorImpl implements MessageGenerator {
 
-    private final Game game;
+    // == constants ==
+    private static final String MAIN_MESSAGE = "game.main.message";
 
+    // == fields ==
+    private final Game game;
+    private final MessageSource messageSource;
+
+    // == constructor ==
     @Autowired
-    public MessageGeneratorImpl(Game game) {
+    public MessageGeneratorImpl(Game game, MessageSource messageSource) {
         this.game = game;
+        this.messageSource = messageSource;
     }
 
+    // == init ==
     @PostConstruct
     public void initialize() {
         log.info("MessageGeneratorImpl has been called");
         log.debug("game: {}", game.getBiggest());
     }
 
+    // == public methods ==
     @Override
     public String getMainMessage() {
-        return "Number is between " +
-                game.getSmallest() + " and " +
-                game.getBiggest() + ". Can you guess it?";
+//        return "Number is between " +
+//                game.getSmallest() + " and " +
+//                game.getBiggest() + ". Can you guess it?";
+        return getMessage(MAIN_MESSAGE, game.getSmallest(), game.getBiggest());
     }
 
     @Override
@@ -49,4 +61,12 @@ public class MessageGeneratorImpl implements MessageGenerator {
             return direction + "! You have " + game.getRemainingGuesses() + " guesses left.";
         }
     }
+
+    // == private methods ==
+    private String getMessage(String code, Object... args) {
+        // code   => reprezentuje klucz (np. game.main.message)
+        // Object... args   => oznacza, że przekazujemy do metody różną liczbę zmiennych
+        return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
+    }
+
 }
