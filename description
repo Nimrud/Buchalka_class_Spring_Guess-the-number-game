@@ -414,3 +414,17 @@ Projekt kilkumodułowy:
     3) TIP: można sobie w klasie dodać stałą, którą jest klucz
     4) zmieniamy metodę generującą komunikat - przykład:
         return getMessage(MAIN_MESSAGE, game.getSmallest(), game.getBiggest());
+41) Request interception
+    -> używa interfejsu HandlerInterceptor
+    -> dla akcji przed obsługą żądania, po niej, a także po wyrenderowaniu widoku
+    -> interfejs HandlerInterception ma 3 metody:
+        => preHandle() - zwraca boolean, aby kontynuować lub wstrzymać wykonywanie żądania
+            (np. sprawdzenie, czy użytkownik jest zalogowany)
+        => postHandle() - po wywołaniu metod kontrolera
+        => afterCompletion() - wywoływana po obsłużeniu całego żądania (w tym stworzeniu widoku)
+    -> dispatcher servlet -> preHandle() -> controller -> postHandle() -> view -> afterCompletion()
+    1) w module 'web' tworzymy katalog 'interceptor', a w nim klasę 'RequestInterceptor'
+    2) implementujemy HandlerInterceptor (+3 metody)
+    3) dodajemy interceptor do Interceptor Registry (w klasie WebConfig) -
+        za pomocą override => addInterceptors(new RequestInterceptor())
+        new RequestInterceptor() to klasa, którą stworzyliśmy w kroku 1
