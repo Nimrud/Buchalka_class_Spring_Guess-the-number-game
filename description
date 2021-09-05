@@ -388,6 +388,7 @@ Projekt kilkumodułowy:
         składnia:   th:text="|#{footer.createdBy} Krzysztof Jaczewski|"
         plik PL:    footer.createdBy=Twórca strony:
         plik EN:    footer.createdBy=Created by:
+        inny przykład: |Created by ${author}|
 39) CHALLENGE 10
     1) internationalize the game-over.html and home.html files, and add translations
         for those two templates
@@ -428,3 +429,26 @@ Projekt kilkumodułowy:
     3) dodajemy interceptor do Interceptor Registry (w klasie WebConfig) -
         za pomocą override => addInterceptors(new RequestInterceptor())
         new RequestInterceptor() to klasa, którą stworzyliśmy w kroku 1
+42) Locale Resolver oraz zmiana języka przy użyciu interceptora
+    -> LocaleResolver to interfejs, który pozwala na zmianę języka w oparciu o request,
+        response, sesje, ciasteczka itp.
+    -> LocaleChangeInterceptor - pozwala na zmianę języka na żądanie
+    1) stworzenie beana LocaleResolver w klasie WebConfig (w oparciu o sesję)
+        => adnotacja @Bean
+    2) dodanie LocaleChangeInterceptor w metodzie .addInterceptors()
+        => tworzymy nowy LocaleChangeInterceptor
+        => nadajemy mu nazwę parametru ("lang")
+        => dodajemy go do rejestru
+            LocaleChangeInterceptor localeChangeInterceptor =
+                    new LocaleChangeInterceptor();
+            localeChangeInterceptor.setParamName("lang");
+            registry.addInterceptor(localeChangeInterceptor);
+    3) w adresie przeglądarki używamy parametru 'lang' do zmiany języka:
+            http://localhost:8080/?lang=en
+            http://localhost:8080/?lang=pl
+    4) UWAGA! Wymaga to użycia pliku z angielską wersją oznaczonego jako 'messages_en'
+    5) jeśli nie chcemy używać parametru 'lang' (lub innego), to możemy zachować
+        domyślny parametr 'locale'; metoda jest wtedy krótsza:
+            registry.addInterceptor(new LocaleChangeInterceptor());
+        użycie w przeglądarce:
+            http://localhost:8080/?locale=en
