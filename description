@@ -351,7 +351,7 @@ Projekt kilkumodułowy:
         w programie, ale przechowywane "na zewnątrz" i pozyskiwane dynamicznie
     -> Spring Boot domyślnie szuka plików lokalizacyjnych w src/main/resources
         (ale dla tej aplikacji w module 'core', a nie 'web', ponieważ klasa
-        MessageGenerator to jest)
+        MessageGenerator odpowiada za wyświetlanie komunikatów)
     -> plik z domyślną wersją językową nazywamy 'messages.properties', a inne
         'messages_xx.properties' - gdzie 'xx' to kod kraju, zgodnie z
         https://www.oracle.com/java/technologies/javase/jdk8-jre8-suported-locales.html
@@ -452,3 +452,8 @@ Projekt kilkumodułowy:
             registry.addInterceptor(new LocaleChangeInterceptor());
         użycie w przeglądarce:
             http://localhost:8080/?locale=en
+    6) UWAGA! W ResourceBundle MUSI być plik domyślny 'messages.properties'
+        czyli jeśli piszemy apkę po angielsku i chcemy dołączyć możliwość przełączania na 'en',
+            to dajemy 2 pliki z tą samą zawartością:
+            1) messages.properties
+            2) messages.properties_en
